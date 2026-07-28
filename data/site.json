@@ -28,10 +28,7 @@
       "image": "assets/glazeui-card.png",
       "showScreenshots": true,
       "screenshots": [
-        "assets/glazeui-card.png",
-        "assets/glazeui-gallery-icons.jpg",
-        "assets/glazeui-gallery-dock.jpg",
-        "assets/glazeui-gallery-brand.jpg"
+        "assets/glazeui-card.png"
       ]
     },
     {
