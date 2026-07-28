@@ -28,7 +28,10 @@
       "image": "assets/glazeui-card.png",
       "showScreenshots": true,
       "screenshots": [
-        "assets/glazeui-card.png"
+        "assets/glazeui-card.png",
+        "assets/glazeui-gallery-icons.jpg",
+        "assets/glazeui-gallery-dock.jpg",
+        "assets/glazeui-gallery-brand.jpg"
       ]
     },
     {
@@ -40,7 +43,9 @@
       "image": "assets/netprint.png",
       "showScreenshots": true,
       "screenshots": [
-        "assets/netprint.png"
+        "assets/netprint.png",
+        "assets/netprint-screen-1785245373483-30439e.png",
+        "assets/netprint-screen-1785245396942-122108.png"
       ]
     },
     {
