@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111320" />
+  <title>Portfolio — Interactive Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=12" />
+</head>
+<body class="page-home">
+  <div class="scene" aria-hidden="true">
+    <div class="scene-image"></div>
+    <div class="scene-overlay"></div>
+    <div class="scene-glow"></div>
+  </div>
+
+  <main class="app-shell">
+    <header class="browser-bar glass depth-panel">
+      <div class="browser-left">
+        <button class="round-btn small raised-btn" aria-label="Меню">▦</button>
+        <button class="round-btn small raised-btn" aria-label="Назад">‹</button>
+        <button class="round-btn small raised-btn" aria-label="Вперед">›</button>
+      </div>
+
+      <div class="address inset-field">
+        <span class="address-left">AA</span>
+        <span class="lock">▣</span>
+        <span class="domain" id="siteDomain">portfolio.dev</span>
+        <span class="mic">⌁</span>
+      </div>
+
+      <div class="browser-right">
+        <button class="round-btn small raised-btn" aria-label="Добавить">＋</button>
+        <button class="round-btn small raised-btn" aria-label="Поделиться">⇧</button>
+        <button class="round-btn small raised-btn" aria-label="Вкладки">▣</button>
+      </div>
+    </header>
+
+    <a class="admin-link-btn glass raised-btn" href="admin.html">
+      <span class="admin-dot"></span>
+      <span>Admin</span>
+    </a>
+<section class="showcase" aria-label="Проекты">
+      <div class="carousel" id="carousel"></div>
+    </section>
+
+    <section class="profile-pill glass depth-panel">
+      <button class="nav-round raised-btn" id="prevBtn" aria-label="Предыдущий проект">‹</button>
+
+      <div class="avatar" id="profileAvatar" aria-hidden="true"><span>IT</span></div>
+
+      <div class="profile-copy">
+        <div class="profile-name" id="profileName">Ваше имя</div>
+        <div class="profile-meta" id="profileRole">Разработчик • IT-специалист</div>
+        <div class="profile-meta" id="profileLocation">Россия / Remote</div>
+      </div>
+
+      <button class="search-btn raised-btn" id="detailsBtn" aria-label="Подробнее">⌕</button>
+      <button class="nav-round raised-btn" id="nextBtn" aria-label="Следующий проект">›</button>
+    </section>
+
+    <div class="home-indicator" aria-hidden="true"></div>
+  </main>
+
+  <dialog class="about-modal glass depth-panel" id="aboutModal">
+    <button class="modal-close raised-btn" id="closeModal" aria-label="Закрыть">×</button>
+    <span class="eyebrow">ОБО МНЕ</span>
+    <h2 id="aboutTitle">Технический специалист, который умеет разбираться в задаче до результата.</h2>
+    <p id="aboutText">Короткое описание, стек, достижения и контакты.</p>
+    <div class="skill-chips" id="skillChips"></div>
+  </dialog>
+
+  <script src="shared.js?v=12"></script>
+  <script src="script.js?v=12"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c1020">
+  <title>Portfolio Admin — GitHub Pages</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=12">
+</head>
+<body class="page-admin page-admin-v9">
+  <div class="scene" aria-hidden="true">
+    <div class="scene-image"></div>
+    <div class="scene-overlay admin-overlay"></div>
+    <div class="scene-glow"></div>
+  </div>
+
+  <main class="cms-shell">
+    <section class="github-connect glass depth-panel" id="connectView">
+      <div class="cms-login-mark">GH</div>
+      <span class="eyebrow">GITHUB PAGES</span>
+      <h1>Подключить админ-панель</h1>
+      <p class="github-connect-copy">
+        Админка работает без PHP: изменения отправляются прямо в твой GitHub-репозиторий.
+        Токен хранится только до закрытия вкладки.
+      </p>
+
+      <form class="github-connect-form" id="connectForm">
+        <div class="admin-grid">
+          <label class="field-row">
+            <span>GitHub username / owner</span>
+            <input class="admin-input inset-field" id="githubOwner" autocomplete="off" required>
+          </label>
+          <label class="field-row">
+            <span>Repository</span>
+            <input class="admin-input inset-field" id="githubRepo" autocomplete="off" required>
+          </label>
+          <label class="field-row">
+            <span>Branch</span>
+            <input class="admin-input inset-field" id="githubBranch" autocomplete="off" value="main" required>
+          </label>
+          <label class="field-row">
+            <span>Папка сайта в репозитории</span>
+            <input class="admin-input inset-field" id="githubDirectory" autocomplete="off" placeholder="пусто = корень">
+          </label>
+        </div>
+
+        <label class="field-row github-token-field">
+          <span>Fine-grained Personal Access Token</span>
+          <input class="admin-input inset-field" id="githubToken" type="password" autocomplete="off" required
+                 placeholder="github_pat_...">
+        </label>
+
+        <div class="github-security-note">
+          Для токена достаточно дать только этому репозиторию разрешение
+          <b>Contents: Read and write</b>. Не добавляй токен в файлы сайта и не коммить его.
+        </div>
+
+        <div class="form-error" id="connectError"></div>
+
+        <div class="github-connect-actions">
+          <a class="secondary-btn raised-btn nav-link-button" href="index.html">← На сайт</a>
+          <button class="primary-btn raised-btn" type="submit">Подключиться к GitHub</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="cms-app glass depth-panel hidden" id="cmsView">
+      <aside class="cms-sidebar">
+        <div class="cms-sidebar-head">
+          <div class="cms-logo">P</div>
+          <div>
+            <strong>Portfolio</strong>
+            <span>GitHub Admin · v12</span>
+          </div>
+        </div>
+
+        <div class="github-connected-badge">
+          <span class="github-live-dot"></span>
+          <div>
+            <strong id="repoBadge">GitHub</strong>
+            <small id="branchBadge">main</small>
+          </div>
+        </div>
+
+        <nav class="cms-nav">
+          <button class="cms-nav-item active" type="button" data-section="profile">
+            <span class="cms-nav-icon">◎</span><span>Профиль</span>
+          </button>
+          <button class="cms-nav-item" type="button" data-section="about">
+            <span class="cms-nav-icon">◌</span><span>Обо мне</span>
+          </button>
+          <button class="cms-nav-item" type="button" data-section="projects">
+            <span class="cms-nav-icon">▦</span><span>Карточки проектов</span>
+          </button>
+        </nav>
+
+        <div class="cms-project-nav hidden" id="projectNavWrap">
+          <div class="cms-project-nav-title">ПРОЕКТЫ</div>
+          <div id="projectNavList"></div>
+          <button class="cms-add-project" id="addProjectBtn" type="button">＋ Новый проект</button>
+        </div>
+
+        <div class="cms-sidebar-bottom">
+          <a href="index.html">Открыть сайт ↗</a>
+          <button id="disconnectBtn" type="button">Отключить GitHub</button>
+        </div>
+      </aside>
+
+      <section class="cms-content">
+        <header class="cms-content-header">
+          <div>
+            <span class="eyebrow" id="sectionEyebrow">ОСНОВНОЕ</span>
+            <h1 id="sectionTitle">Профиль</h1>
+            <p id="sectionDescription">Изменения сохраняются коммитом в data/site.json.</p>
+          </div>
+
+          <div class="cms-save-wrap">
+            <span class="save-status" id="saveStatus"></span>
+            <button class="primary-btn raised-btn" id="saveBtn" type="button">Сохранить в GitHub</button>
+          </div>
+        </header>
+
+        <div class="cms-content-body">
+          <section class="cms-section active" data-panel="profile">
+            <div class="cms-form-card">
+              <div class="cms-profile-layout">
+                <div>
+                  <div class="admin-grid">
+                    <label class="field-row">
+                      <span>Имя</span>
+                      <input class="admin-input inset-field" id="profileNameInput">
+                    </label>
+                    <label class="field-row">
+                      <span>Роль / должность</span>
+                      <input class="admin-input inset-field" id="profileRoleInput">
+                    </label>
+                    <label class="field-row">
+                      <span>Локация</span>
+                      <input class="admin-input inset-field" id="profileLocationInput">
+                    </label>
+                    <label class="field-row">
+                      <span>Адрес в верхней панели</span>
+                      <input class="admin-input inset-field" id="profileDomainInput">
+                    </label>
+                  </div>
+                </div>
+
+                <div class="cms-avatar-editor">
+                  <div class="cms-avatar-preview" id="avatarPreview"><span>IT</span></div>
+                  <strong>Аватар</strong>
+                  <p>Фото будет загружено в <code>assets/</code> отдельным GitHub-коммитом.</p>
+                  <label class="primary-btn raised-btn cms-file-button">
+                    Выбрать фото
+                    <input id="avatarInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+                  </label>
+                  <small id="avatarPath">Фото не выбрано</small>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="cms-section" data-panel="about">
+            <div class="cms-form-card">
+              <label class="field-row">
+                <span>Заголовок</span>
+                <input class="admin-input inset-field" id="aboutTitleInput">
+              </label>
+              <label class="field-row">
+                <span>Описание</span>
+                <textarea class="admin-input admin-textarea inset-field" id="aboutTextInput"></textarea>
+              </label>
+              <label class="field-row">
+                <span>Навыки — через запятую</span>
+                <input class="admin-input inset-field" id="aboutSkillsInput">
+              </label>
+            </div>
+          </section>
+
+          <section class="cms-section" data-panel="projects">
+            <div class="cms-project-editor" id="projectEditor">
+              <div class="cms-project-empty">Выберите проект слева.</div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="github-config.js?v=12"></script>
+  <script src="shared.js?v=12"></script>
+  <script src="admin.js?v=12"></script>
+</body>
+</html>
